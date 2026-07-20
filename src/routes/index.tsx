@@ -1,24 +1,51 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { motion } from "framer-motion";
+import { Nav } from "@/components/Nav";
+import { Hero } from "@/components/sections/Hero";
+import { Features } from "@/components/sections/Features";
+import { Workflow } from "@/components/sections/Workflow";
+import { Pricing } from "@/components/sections/Pricing";
+import { FAQ } from "@/components/sections/FAQ";
+import { CTA, Footer } from "@/components/sections/CTA";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  component: Landing,
+  head: () => ({
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: "Nebula.ai",
+          applicationCategory: "BusinessApplication",
+          operatingSystem: "Web",
+          description:
+            "Autonomous AI agents that plan, publish, engage and grow your brand across every social channel.",
+          offers: { "@type": "Offer", price: "29", priceCurrency: "USD" },
+        }),
+      },
+    ],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Landing() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8, delay: 0.4 }}
+      className="relative bg-grid"
     >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+      <Nav />
+      <Hero />
+      <Features />
+      <Workflow />
+      <Pricing />
+      <FAQ />
+      <CTA />
+      <Footer />
+    </motion.main>
   );
 }
