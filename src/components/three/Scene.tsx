@@ -63,7 +63,6 @@ export default function Scene() {
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       className="!absolute inset-0"
     >
-      <color attach="background" args={["#00000000"]} />
       <ambientLight intensity={0.4} />
       <directionalLight
         position={[5, 6, 5]}
@@ -80,10 +79,6 @@ export default function Scene() {
         <ContactShadows position={[0, -1.9, 0]} opacity={0.4} scale={8} blur={2.6} far={4} />
         <Environment preset="city" />
       </Suspense>
-
-      <EffectComposer>
-        <Bloom intensity={0.9} luminanceThreshold={0.2} luminanceSmoothing={0.9} mipmapBlur />
-      </EffectComposer>
     </Canvas>
   );
 }
