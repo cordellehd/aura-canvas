@@ -1,6 +1,5 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, Environment, MeshDistortMaterial, Stars, ContactShadows } from "@react-three/drei";
-import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { Suspense, useRef } from "react";
 import type { Mesh, Group } from "three";
 
